@@ -1,77 +1,64 @@
-test result
-
-1st:
-╰─➤  pytest tests/ui/test_home_smoke.py -v
+╰─➤  pytest tests/ui/ -v
 ============================== test session starts ===============================
 platform darwin -- Python 3.14.3, pytest-9.0.2, pluggy-1.6.0 -- /Users/dthuynh/Documents/Personal/source/AutoTest-GenerativeAI/.venv/bin/python3.14
 cachedir: .pytest_cache
 rootdir: /Users/dthuynh/Documents/Personal/source/AutoTest-GenerativeAI
 configfile: pyproject.toml
 plugins: anyio-4.12.1, playwright-0.7.2, xdist-3.8.0, base-url-2.1.0
-collected 4 items                                                                
+collected 13 items                                                               
 
-tests/ui/test_home_smoke.py::test_homepage_loads[chromium] PASSED          [ 25%]
-tests/ui/test_home_smoke.py::test_contact_link_visible[chromium] PASSED    [ 50%]
-tests/ui/test_home_smoke.py::test_services_section_present[chromium] PASSED [ 75%]
-tests/ui/test_home_smoke.py::test_navigate_to_contact[chromium] PASSED     [100%]
+tests/ui/test_home_smoke.py::test_homepage_loads[chromium] PASSED          [  7%]
+tests/ui/test_home_smoke.py::test_contact_link_visible[chromium] PASSED    [ 15%]
+tests/ui/test_home_smoke.py::test_services_section_present[chromium] PASSED [ 23%]
+tests/ui/test_home_smoke.py::test_navigate_to_contact[chromium] PASSED     [ 30%]
+tests/ui/test_pages_navigation.py::test_navigate_to_case_studies[chromium] FAILED [ 38%]
+tests/ui/test_pages_navigation.py::test_case_studies_page_direct[chromium] PASSED [ 46%]
+tests/ui/test_pages_navigation.py::test_navigate_to_about_us[chromium] FAILED [ 53%]
+tests/ui/test_pages_navigation.py::test_about_page_direct[chromium] PASSED [ 61%]
+tests/ui/test_services_navigation.py::test_service_page_loads[chromium-software-engineering-services/software-engineering] PASSED [ 69%]
+tests/ui/test_services_navigation.py::test_service_page_loads[chromium-software-testing-services/software-testing] PASSED [ 76%]
+tests/ui/test_services_navigation.py::test_service_page_loads[chromium-big-data-and-ai-services/big-data-and-ai] PASSED [ 84%]
+tests/ui/test_services_navigation.py::test_service_page_loads[chromium-devops-and-cloud-services/devops-and-cloud] PASSED [ 92%]
+tests/ui/test_services_navigation.py::test_service_page_loads[chromium-cyber-security-services/cyber-security] PASSED [100%]
 
-=============================== 4 passed in 12.67s ===============================
-
-
-2nd:
-╰─➤  k6 run k6/agest_smoke.js                                                99 ↵
-
-         /\      Grafana   /‾‾/  
-    /\  /  \     |\  __   /  /   
-   /  \/    \    | |/ /  /   ‾‾\ 
-  /          \   |   (  |  (‾)  |
- / __________ \  |_|\_\  \_____/ 
-
-
-     execution: local
-        script: k6/agest_smoke.js
-        output: -
-
-     scenarios: (100.00%) 1 scenario, 2 max VUs, 1m0s max duration (incl. graceful stop):
-              * default: 2 looping VUs for 30s (gracefulStop: 30s)
-
-
-
-  █ THRESHOLDS 
-
-    http_req_duration
-    ✓ 'p(95)<3000' p(95)=1.76s
-
-    http_req_failed
-    ✓ 'rate<0.05' rate=0.00%
-
-
-  █ TOTAL RESULTS 
-
-    checks_total.......: 31      1.004986/s
-    checks_succeeded...: 100.00% 31 out of 31
-    checks_failed......: 0.00%   0 out of 31
-
-    ✓ status is 200
-
-    HTTP
-    http_req_duration..............: avg=958.62ms min=376.72ms med=860.99ms max=1.91s p(90)=1.63s p(95)=1.76s
-      { expected_response:true }...: avg=958.62ms min=376.72ms med=860.99ms max=1.91s p(90)=1.63s p(95)=1.76s
-    http_req_failed................: 0.00%  0 out of 31
-    http_reqs......................: 31     1.004986/s
-
-    EXECUTION
-    iteration_duration.............: avg=1.96s    min=1.37s    med=1.86s    max=3.03s p(90)=2.63s p(95)=2.81s
-    iterations.....................: 31     1.004986/s
-    vus............................: 2      min=2       max=2
-    vus_max........................: 2      min=2       max=2
-
-    NETWORK
-    data_received..................: 9.6 MB 312 kB/s
-    data_sent......................: 37 kB  1.2 kB/s
-
-
-
-
-running (0m30.8s), 0/2 VUs, 31 complete and 0 interrupted iterations
-default ✓ [======================================] 2 VUs  30s
+==================================== FAILURES ====================================
+____________________ test_navigate_to_case_studies[chromium] _____________________
+tests/ui/test_pages_navigation.py:30: in test_navigate_to_case_studies
+    case_page.heading_main.wait_for(state="visible", timeout=PAGE_TIMEOUT)
+.venv/lib/python3.14/site-packages/playwright/sync_api/_generated.py:18074: in wait_for
+    self._sync(self._impl_obj.wait_for(timeout=timeout, state=state))
+.venv/lib/python3.14/site-packages/playwright/_impl/_locator.py:710: in wait_for
+    await self._frame.wait_for_selector(
+.venv/lib/python3.14/site-packages/playwright/_impl/_frame.py:369: in wait_for_selector
+    await self._channel.send(
+.venv/lib/python3.14/site-packages/playwright/_impl/_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+.venv/lib/python3.14/site-packages/playwright/_impl/_connection.py:559: in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E   playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.
+E   Call log:
+E     - waiting for locator("h1").filter(has_text="Case Studies").first to be visible
+______________________ test_navigate_to_about_us[chromium] _______________________
+tests/ui/test_pages_navigation.py:53: in test_navigate_to_about_us
+    about_page.heading_main.wait_for(state="visible", timeout=PAGE_TIMEOUT)
+.venv/lib/python3.14/site-packages/playwright/sync_api/_generated.py:18074: in wait_for
+    self._sync(self._impl_obj.wait_for(timeout=timeout, state=state))
+.venv/lib/python3.14/site-packages/playwright/_impl/_locator.py:710: in wait_for
+    await self._frame.wait_for_selector(
+.venv/lib/python3.14/site-packages/playwright/_impl/_frame.py:369: in wait_for_selector
+    await self._channel.send(
+.venv/lib/python3.14/site-packages/playwright/_impl/_connection.py:69: in send
+    return await self._connection.wrap_api_call(
+.venv/lib/python3.14/site-packages/playwright/_impl/_connection.py:559: in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E   playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.
+E   Call log:
+E     - waiting for locator("h1").filter(has_text="Delivering Quality").first to be visible
+============================ short test summary info =============================
+FAILED tests/ui/test_pages_navigation.py::test_navigate_to_case_studies[chromium] - playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("h1").filter(has_text="Case Studies").first to be visible
+FAILED tests/ui/test_pages_navigation.py::test_navigate_to_about_us[chromium] - playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("h1").filter(has_text="Delivering Quality").first to be visible
+==================== 2 failed, 11 passed in 100.80s (0:01:40) ====================

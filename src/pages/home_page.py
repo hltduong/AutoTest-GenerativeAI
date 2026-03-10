@@ -17,17 +17,6 @@ class HomePage(BasePage):
         # Fallback: h1 or role-based (some environments render differently)
         return self.page.locator("h1").filter(has_text="Driving Innovation").first
 
-    def accept_cookies_if_present(self) -> None:
-        """Accept cookie banner if visible (reduces overlay blocking content)."""
-        for btn_name in ("Accept cookies", "Accept All"):
-            try:
-                btn = self.page.get_by_role("button", name=btn_name)
-                btn.wait_for(state="visible", timeout=3000)
-                btn.click()
-                return
-            except Exception:
-                continue
-
     @property
     def link_contact(self):
         return self.page.locator('a:has-text("Get in Touch")').first
@@ -35,6 +24,15 @@ class HomePage(BasePage):
     @property
     def link_contact_footer(self):
         return self.page.locator('a:has-text("Get In Touch")').first
+
+    @property
+    def link_about_us(self):
+        return self.page.get_by_role("link", name="About Us")
+
+    @property
+    def link_case_studies(self):
+        # Use exact match to avoid "More Case Studies" (footer link)
+        return self.page.get_by_role("link", name="Case Studies")
 
     @property
     def section_services(self):

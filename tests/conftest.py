@@ -7,6 +7,8 @@ from src.clients.agest_client import AgestClient
 from src.pages.home_page import HomePage
 from src.pages.contact_page import ContactPage
 from src.pages.services_page import ServicesPage, SERVICE_PATHS
+from src.pages.case_studies_page import CaseStudiesPage
+from src.pages.about_page import AboutPage
 
 
 @pytest.fixture(scope="session")
@@ -40,3 +42,15 @@ def contact_page(page, base_url: str) -> ContactPage:
 def service_path(request) -> str:
     """Parametrized service path for data-driven tests."""
     return request.param
+
+
+@pytest.fixture
+def case_studies_page(page, base_url: str) -> CaseStudiesPage:
+    """Case Studies page object."""
+    return CaseStudiesPage(page, base_url)
+
+
+@pytest.fixture
+def about_page(page, base_url: str) -> AboutPage:
+    """About Us page object."""
+    return AboutPage(page, base_url)
