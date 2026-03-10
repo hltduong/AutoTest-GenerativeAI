@@ -55,6 +55,25 @@ pytest -m "not ui"
 └── k6/               # Performance scripts (Week 8+)
 ```
 
+## k6 Performance Tests
+
+```bash
+# Smoke (2 VUs, 30s)
+k6 run k6/agest_smoke.js
+
+# Multi-page (5 VUs, 1m) - home, contact, about, case-studies, services
+k6 run k6/agest_multi_page.js
+
+# User journey (3 VUs, 45s) - home → service → contact
+k6 run k6/agest_user_journey.js
+
+# Load test (ramp 0→10 VUs, sustain, ramp down)
+k6 run k6/agest_load.js
+
+# Override base URL
+BASE_URL=https://staging.agest.vn k6 run k6/agest_smoke.js
+```
+
 ## Requirement Parser (Week 1)
 
 ```bash
