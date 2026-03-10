@@ -87,7 +87,7 @@ python -m src.parsers.requirement_parser requirements/sample.txt
   **Local (Docker):**
   ```bash
   docker compose -f docker/docker-compose.yml up -d
-  ./scripts/k6_local.sh
+  ./scripts/k6_local.sh          # or scripts\k6_local.bat on Windows
   # Open http://localhost:3000 (admin/admin), import dashboard 19665
   ```
 - **Allure**: Rich pytest reports with trends and screenshots.

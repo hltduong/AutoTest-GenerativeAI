@@ -24,6 +24,8 @@ docker compose -f docker/docker-compose.yml up -d
 ./scripts/k6_local.sh k6/agest_load.js   # load test
 ```
 
+**Windows:** Use `scripts\k6_local.bat` or `scripts\k6_grafana.bat` instead of the `.sh` scripts.
+
 #### Step 3: Open Grafana and Import Dashboard
 
 1. Open **http://localhost:3000**
@@ -127,6 +129,7 @@ Your `.env` is already configured with the Grafana Cloud credentials. Run:
 ```bash
 ./scripts/k6_grafana.sh                    # runs agest_smoke.js
 ./scripts/k6_grafana.sh k6/agest_load.js   # runs load test
+# Windows: scripts\k6_grafana.bat [script.js]
 ```
 
 To set up manually, create `.env` (ensure it's in `.gitignore`):
