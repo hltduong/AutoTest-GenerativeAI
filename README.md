@@ -100,6 +100,8 @@ allure serve allure-results
 
 ## Learning Path Alignment
 
+See [docs/LEARNING_GUIDELINE.md](docs/LEARNING_GUIDELINE.md) for extension ideas (AI, API, CI/CD, etc.).
+
 | Week | Focus | Deliverable |
 |------|-------|-------------|
 | 1 | Python foundations | ✅ Requirement parser, venv, JSON output |
