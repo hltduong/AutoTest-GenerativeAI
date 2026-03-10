@@ -1,0 +1,42 @@
+"""Pytest fixtures for agest.vn automation."""
+
+import pytest
+
+from config.settings import BASE_URL
+from src.clients.agest_client import AgestClient
+from src.pages.home_page import HomePage
+from src.pages.contact_page import ContactPage
+from src.pages.services_page import ServicesPage, SERVICE_PATHS
+
+
+@pytest.fixture(scope="session")
+def base_url() -> str:
+    """Base URL for agest.vn."""
+    return BASE_URL
+
+
+@pytest.fixture
+def api_client(base_url: str) -> AgestClient:
+    """Reusable API client."""
+    return AgestClient(base_url=base_url)
+
+
+# Playwright fixtures are provided by pytest-playwright
+# page, browser, context, etc. are available automatically
+
+@pytest.fixture
+def home_page(page, base_url: str) -> HomePage:
+    """Home page object for agest.vn."""
+    return HomePage(page, base_url)
+
+
+@pytest.fixture
+def contact_page(page, base_url: str) -> ContactPage:
+    """Contact page object."""
+    return ContactPage(page, base_url)
+
+
+@pytest.fixture(params=list(SERVICE_PATHS.values()))
+def service_path(request) -> str:
+    """Parametrized service path for data-driven tests."""
+    return request.param

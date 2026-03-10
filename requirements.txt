@@ -1,0 +1,24 @@
+# AI Testing Learning Path - Python + pytest + Playwright + k6
+# https://www.agest.vn automation
+
+# Test framework
+pytest>=8.0.0
+pytest-xdist>=3.5.0
+pytest-playwright>=0.4.0
+
+# Browser automation
+playwright>=1.40.0
+
+# API testing
+httpx>=0.26.0
+
+# Data validation & schemas
+pydantic>=2.5.0
+
+# Config & env
+python-dotenv>=1.0.0
+pyyaml>=6.0.0
+
+# Pre-commit & style (optional)
+pre-commit>=3.6.0
+ruff>=0.1.0
