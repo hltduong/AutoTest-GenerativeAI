@@ -1,0 +1,10 @@
+# Prometheus config for k6 metrics
+# k6 pushes to /api/v1/write (remote write receiver)
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  # Optional: scrape Prometheus itself
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

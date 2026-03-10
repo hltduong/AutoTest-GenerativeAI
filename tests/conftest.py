@@ -3,6 +3,29 @@
 import pytest
 
 from config.settings import BASE_URL
+
+# Allure: attach Playwright screenshot on UI test failure
+try:
+    import allure
+
+    @pytest.hookimpl(hookwrapper=True)
+    def pytest_runtest_makereport(item):
+        outcome = yield
+        rep = outcome.get_result()
+        if rep.when == "call" and rep.failed and "page" in item.fixturenames:
+            try:
+                page = item.funcargs.get("page")
+                if page:
+                    screenshot = page.screenshot()
+                    allure.attach(
+                        screenshot,
+                        name="failure-screenshot",
+                        attachment_type=allure.attachment_type.PNG,
+                    )
+            except Exception:
+                pass
+except ImportError:
+    pass
 from src.clients.agest_client import AgestClient
 from src.pages.home_page import HomePage
 from src.pages.contact_page import ContactPage

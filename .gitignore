@@ -10,3 +10,5 @@ htmlcov/
 playwright-report/
 test-results/
 .blobs/
+allure-results/
+allure-report/

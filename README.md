@@ -80,6 +80,24 @@ BASE_URL=https://staging.agest.vn k6 run k6/agest_smoke.js
 python -m src.parsers.requirement_parser requirements/sample.txt
 ```
 
+## Reports & Dashboards
+
+- **Grafana + k6** (local or cloud): Push k6 metrics for charts. See [docs/SETUP_GRAFANA_AND_ALLURE.md](docs/SETUP_GRAFANA_AND_ALLURE.md).
+
+  **Local (Docker):**
+  ```bash
+  docker compose -f docker/docker-compose.yml up -d
+  ./scripts/k6_local.sh
+  # Open http://localhost:3000 (admin/admin), import dashboard 19665
+  ```
+- **Allure**: Rich pytest reports with trends and screenshots.
+
+```bash
+# Allure: run tests and view report
+pytest tests/ --alluredir=allure-results
+allure serve allure-results
+```
+
 ## Learning Path Alignment
 
 | Week | Focus | Deliverable |
